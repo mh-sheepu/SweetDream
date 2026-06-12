@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sweet Dream - a private adult companionship directory for verified adults.">
+  <title>Sweet Dream | Private Companionship</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c070d;
+      --surface: #160d17;
+      --surface-soft: rgba(37, 21, 38, 0.72);
+      --text: #fff8fc;
+      --muted: #b9a8b6;
+      --rose: #e64d83;
+      --rose-light: #ff80ab;
+      --gold: #e6bd79;
+      --line: rgba(255, 255, 255, 0.1);
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 75% 18%, rgba(171, 45, 103, 0.2), transparent 31rem),
+        radial-gradient(circle at 5% 80%, rgba(111, 40, 105, 0.14), transparent 28rem),
+        var(--bg);
+      font-family: "DM Sans", sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin-inline: auto;
+    }
+
+    .age-bar {
+      position: relative;
+      z-index: 20;
+      padding: 9px 20px;
+      color: #d9cbd5;
+      background: #080408;
+      border-bottom: 1px solid var(--line);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-align: center;
+    }
+
+    .age-bar strong {
+      margin-right: 7px;
+      color: var(--gold);
+    }
+
+    .site-header {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(12, 7, 13, 0.76);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-wrap {
+      display: flex;
+      min-height: 82px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .logo-mark {
+      display: grid;
+      width: 39px;
+      height: 39px;
+      place-items: center;
+      border: 1px solid rgba(230, 189, 121, 0.45);
+      border-radius: 50%;
+      color: var(--gold);
+      background: linear-gradient(145deg, rgba(230, 189, 121, 0.15), rgba(230, 77, 131, 0.09));
+      box-shadow: 0 0 22px rgba(230, 77, 131, 0.1);
+    }
+
+    .logo-mark svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .logo-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .logo-copy strong {
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+      font-style: italic;
+      letter-spacing: 0.01em;
+    }
+
+    .logo-copy small {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.27em;
+      text-transform: uppercase;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+
+    .main-nav a {
+      position: relative;
+      padding: 30px 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 180ms ease;
+    }
+
+    .main-nav a::after {
+      position: absolute;
+      right: 0;
+      bottom: 23px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--rose-light);
+      transform: scaleX(0);
+      transition: transform 180ms ease;
+    }
+
+    .main-nav a:hover,
+    .main-nav a.active {
+      color: var(--text);
+    }
+
+    .main-nav a:hover::after,
+    .main-nav a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .login-link {
+      padding: 11px 8px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 21px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      color: white;
+      background: linear-gradient(135deg, #c73570, #e65586);
+      box-shadow: 0 12px 30px rgba(197, 53, 112, 0.25);
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .primary-button:hover {
+      box-shadow: 0 15px 36px rgba(230, 77, 131, 0.38);
+      transform: translateY(-2px);
+    }
+
+    .menu-button {
+      display: none;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: transparent;
+    }
+
+    .menu-button span {
+      display: block;
+      width: 18px;
+      height: 1px;
+      margin: 5px auto;
+      background: white;
+      transition: transform 180ms ease;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 116px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: -2;
+      top: 5%;
+      right: -12%;
+      width: 58vw;
+      height: 58vw;
+      max-width: 760px;
+      max-height: 760px;
+      border: 1px solid rgba(230, 189, 121, 0.1);
+      border-radius: 50%;
+      content: "";
+      box-shadow:
+        0 0 0 70px rgba(230, 77, 131, 0.025),
+        0 0 0 140px rgba(230, 77, 131, 0.018);
+    }
+
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      opacity: 0.23;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.32) 0.6px, transparent 0.6px);
+      background-size: 25px 25px;
+      mask-image: linear-gradient(to right, transparent 5%, black 60%, transparent 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.72fr);
+      align-items: center;
+      gap: 80px;
+      padding: 90px 0 100px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 30px;
+      height: 1px;
+      content: "";
+      background: var(--gold);
+    }
+
+    h1 {
+      max-width: 720px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(54px, 7vw, 92px);
+      font-weight: 600;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    h1 em {
+      color: var(--rose-light);
+      font-weight: 600;
+    }
+
+    .hero-copy > p {
+      max-width: 590px;
+      margin: 28px 0 35px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .hero-buttons .primary-button {
+      min-height: 54px;
+      padding-inline: 28px;
+    }
+
+    .secondary-button {
+      display: inline-flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 25px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #e8dde5;
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 13px;
+      font-weight: 600;
+      transition: border-color 180ms ease, background 180ms ease;
+    }
+
+    .secondary-button:hover {
+      border-color: rgba(230, 189, 121, 0.45);
+      background: rgba(230, 189, 121, 0.06);
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 40px;
+      color: #9e8f9b;
+      font-size: 12px;
+    }
+
+    .trust-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-row svg {
+      width: 16px;
+      color: var(--gold);
+    }
+
+    .availability-card {
+      position: relative;
+      padding: 32px;
+      border: 1px solid rgba(230, 189, 121, 0.2);
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.055), transparent 42%),
+        rgba(24, 13, 25, 0.88);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(20px);
+    }
+
+    .availability-card::before {
+      position: absolute;
+      top: -1px;
+      right: 50px;
+      left: 50px;
+      height: 1px;
+      content: "";
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .card-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .card-label span:first-child {
+      font-family: "Playfair Display", serif;
+      font-size: 25px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #c9b8c5;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      content: "";
+      background: #77d29a;
+      box-shadow: 0 0 12px #77d29a;
+    }
+
+    .option-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 15px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      color: inherit;
+      background: rgba(255, 255, 255, 0.025);
+      cursor: pointer;
+      font-family: inherit;
+      text-align: left;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .option:hover {
+      border-color: rgba(230, 77, 131, 0.45);
+      transform: translateX(3px);
+    }
+
+    .option-icon {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      place-items: center;
+      border-radius: 13px;
+      color: var(--rose-light);
+      background: rgba(230, 77, 131, 0.1);
+    }
+
+    .option-icon svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .option-copy {
+      flex: 1;
+    }
+
+    .option-copy strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 14px;
+    }
+
+    .option-copy small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .option-arrow {
+      color: #806e7d;
+      font-size: 20px;
+      transition: transform 180ms ease;
+    }
+
+    .location-picker.open .option-arrow {
+      transform: rotate(90deg);
+    }
+
+    .location-menu {
+      display: grid;
+      max-height: 0;
+      gap: 7px;
+      margin-top: 0;
+      padding: 0 8px;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 240ms ease, margin 240ms ease, opacity 180ms ease;
+    }
+
+    .location-picker.open .location-menu {
+      max-height: 310px;
+      margin-top: 10px;
+      opacity: 1;
+    }
+
+    .location-choice {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.025);
+      font: inherit;
+      font-size: 13px;
+      text-align: left;
+      transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .location-choice:hover,
+    .location-choice.selected {
+      border-color: rgba(230, 77, 131, 0.32);
+      color: var(--text);
+      background: rgba(230, 77, 131, 0.09);
+    }
+
+    .location-choice.selected::after {
+      color: var(--rose-light);
+      content: "✓";
+    }
+
+    .card-note {
+      margin-top: 20px;
+      color: #8f7e8b;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .profiles-section {
+      position: relative;
+      padding: 105px 0;
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 12% 30%, rgba(230, 77, 131, 0.09), transparent 26rem),
+        #0a060b;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      margin-top: 13px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+    }
+
+    .section-heading p {
+      max-width: 480px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .profile-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.22);
+    }
+
+    .profile-card.featured {
+      display: grid;
+      grid-column: span 2;
+      grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+    }
+
+    .profile-visual {
+      position: relative;
+      display: grid;
+      min-height: 300px;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255, 128, 171, 0.22), transparent 32%),
+        linear-gradient(145deg, #32172b, #160d19 70%);
+    }
+
+    .profile-visual::before,
+    .profile-visual::after {
+      position: absolute;
+      border: 1px solid rgba(230, 189, 121, 0.17);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .profile-visual::before {
+      width: 260px;
+      height: 260px;
+    }
+
+    .profile-visual::after {
+      width: 210px;
+      height: 210px;
+    }
+
+    .profile-initials {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 132px;
+      height: 132px;
+      place-items: center;
+      border: 1px solid rgba(230, 189, 121, 0.5);
+      border-radius: 50%;
+      color: var(--gold);
+      background: rgba(12, 7, 13, 0.62);
+      box-shadow: 0 0 50px rgba(230, 77, 131, 0.19);
+      font-family: "Playfair Display", serif;
+      font-size: 46px;
+      font-style: italic;
+    }
+
+    .verified-badge {
+      position: absolute;
+      z-index: 2;
+      top: 20px;
+      left: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border: 1px solid rgba(119, 210, 154, 0.25);
+      border-radius: 999px;
+      color: #a9e8c0;
+      background: rgba(8, 18, 12, 0.72);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+    }
+
+    .verified-badge::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      content: "";
+      background: #77d29a;
+    }
+
+    .profile-body {
+      padding: 26px;
+    }
+
+    .profile-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 8px;
+    }
+
+    .profile-title h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+    }
+
+    .profile-age {
+      flex-shrink: 0;
+      padding: 7px 11px;
+      border: 1px solid rgba(230, 189, 121, 0.22);
+      border-radius: 999px;
+      color: var(--gold);
+      background: rgba(230, 189, 121, 0.06);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .profile-role {
+      margin-bottom: 20px;
+      color: var(--rose-light);
+      font-size: 13px;
+    }
+
+    .profile-description {
+      margin-bottom: 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .profile-details {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .profile-detail {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: rgba(255, 255, 255, 0.022);
+    }
+
+    .profile-detail small {
+      display: block;
+      margin-bottom: 5px;
+      color: #806f7d;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .profile-detail strong {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .profile-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .profile-actions a {
+      flex: 1;
+    }
+
+    .coming-card {
+      display: grid;
+      min-height: 100%;
+      place-items: center;
+      padding: 35px;
+      border: 1px dashed rgba(230, 189, 121, 0.2);
+      border-radius: 26px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.018);
+      text-align: center;
+    }
+
+    .coming-card span {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-size: 37px;
+      font-style: italic;
+    }
+
+    .services-section {
+      padding: 105px 0;
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 86% 60%, rgba(111, 40, 105, 0.13), transparent 28rem),
+        var(--bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(230, 77, 131, 0.38);
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 20px;
+      place-items: center;
+      border: 1px solid rgba(230, 77, 131, 0.2);
+      border-radius: 14px;
+      color: var(--rose-light);
+      background: rgba(230, 77, 131, 0.09);
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      font-style: italic;
+    }
+
+    .service-card h3 {
+      margin-bottom: 9px;
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .service-card strong {
+      display: block;
+      margin-top: 16px;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .service-notice {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      margin-top: 24px;
+      padding: 22px 25px;
+      border: 1px solid rgba(230, 189, 121, 0.18);
+      border-radius: 20px;
+      background: rgba(230, 189, 121, 0.04);
+    }
+
+    .service-notice p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .service-notice b {
+      color: var(--text);
+    }
+
+    .preference-form {
+      margin-top: 16px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .profile-booking-toggle {
+      width: 100%;
+      margin-top: 12px;
+      cursor: pointer;
+      border: 1px solid rgba(230, 189, 121, 0.2);
+      background: rgba(230, 189, 121, 0.04);
+    }
+
+    .profile-booking-toggle span {
+      transition: transform 180ms ease;
+    }
+
+    .profile-booking-toggle[aria-expanded="true"] span {
+      transform: rotate(90deg);
+    }
+
+    .profile-booking-panel {
+      display: none;
+    }
+
+    .profile-booking-panel.open {
+      display: block;
+      animation: reveal-form 240ms ease;
+    }
+
+    @keyframes reveal-form {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-heading {
+      margin-bottom: 24px;
+    }
+
+    .form-heading h3 {
+      margin-bottom: 7px;
+      font-family: "Playfair Display", serif;
+      font-size: 28px;
+    }
+
+    .form-heading p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      color: #c9bac5;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      outline: none;
+      color: var(--text);
+      background: #171018;
+      font: inherit;
+      font-size: 14px;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .form-field select {
+      min-height: 50px;
+      padding: 0 42px 0 15px;
+      cursor: pointer;
+    }
+
+    .form-field textarea {
+      min-height: 105px;
+      padding: 14px 15px;
+      resize: vertical;
+    }
+
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: rgba(230, 77, 131, 0.65);
+      box-shadow: 0 0 0 3px rgba(230, 77, 131, 0.09);
+    }
+
+    .form-field option {
+      color: var(--text);
+      background: #171018;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .form-disclaimer,
+    .form-message {
+      color: #8f7e8b;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .form-message {
+      display: none;
+      color: #a9e8c0;
+      font-weight: 600;
+    }
+
+    .form-message.visible {
+      display: block;
+    }
+
+    .submit-button {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 960px) {
+      .main-nav,
+      .login-link {
+        display: none;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .main-nav.open {
+        position: absolute;
+        top: 82px;
+        right: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 22px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(18, 10, 19, 0.98);
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+      }
+
+      .main-nav.open a {
+        padding: 15px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .main-nav.open a:last-child {
+        border-bottom: 0;
+      }
+
+      .main-nav.open a::after {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 55px;
+        padding-top: 75px;
+      }
+
+      .availability-card {
+        max-width: 620px;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card.featured {
+        display: block;
+        grid-column: auto;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .age-bar {
+        font-size: 10px;
+      }
+
+      .nav-wrap {
+        min-height: 72px;
+      }
+
+      .logo-copy strong {
+        font-size: 20px;
+      }
+
+      .logo-copy small {
+        display: none;
+      }
+
+      .nav-actions .primary-button {
+        display: none;
+      }
+
+      .main-nav.open {
+        top: 72px;
+        right: 14px;
+        left: 14px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-grid {
+        padding: 65px 0 72px;
+      }
+
+      h1 {
+        font-size: clamp(48px, 15vw, 67px);
+      }
+
+      .hero-copy > p {
+        margin-top: 23px;
+        font-size: 15px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .hero-buttons a {
+        width: 100%;
+      }
+
+      .trust-row {
+        gap: 14px;
+      }
+
+      .availability-card {
+        padding: 24px 18px;
+        border-radius: 23px;
+      }
+
+      .profiles-section {
+        padding: 75px 0;
+      }
+
+      .services-section {
+        padding: 75px 0;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-notice {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .preference-form {
+        padding: 24px 18px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-field.full {
+        grid-column: auto;
+      }
+
+      .form-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .profile-visual {
+        min-height: 250px;
+      }
+
+      .profile-details {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="age-bar">
+    <strong>18+ ADULTS ONLY</strong>
+    By entering, you confirm that you are of legal age in your location.
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="#" aria-label="Sweet Dream home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M19.5 14.5A8 8 0 0 1 9.5 4.3a8 8 0 1 0 10 10.2Z"/>
+            <path d="m15.7 3.2.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z"/>
+          </svg>
+        </span>
+        <span class="logo-copy">
+          <strong>Sweet Dream</strong>
+          <small>Private companionship</small>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a class="active" href="#">Home</a>
+        <a href="#companions">Companions</a>
+        <a href="#services">Services</a>
+        <a href="#locations">Locations</a>
+        <a href="#safety">Safety</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="login-link" href="#login">Sign in</a>
+        <a class="primary-button" href="#booking">
+          Book privately
+          <span aria-hidden="true">→</span>
+        </a>
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Discreet. Refined. Personal.</div>
+          <h1>Your evening,<br><em>beautifully</em> arranged.</h1>
+          <p>
+            Discover independent adult companions in a private, respectful setting.
+            Browse verified profiles and arrange your time with confidence and discretion.
+          </p>
+
+          <div class="hero-buttons">
+            <a class="primary-button" href="#companions">Explore companions <span aria-hidden="true">→</span></a>
+            <a class="secondary-button" href="#how-it-works">How it works</a>
+          </div>
+
+          <div class="trust-row" aria-label="Service benefits">
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+              Identity checked
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                <rect x="3" y="11" width="18" height="10" rx="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Private communication
+            </span>
+            <span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="M8 12.5 10.5 15 16 9"/>
+              </svg>
+              Adults only
+            </span>
+          </div>
+        </div>
+
+        <aside class="availability-card" id="booking">
+          <div class="card-label">
+            <span>Plan your time</span>
+            <span class="status">Available now</span>
+          </div>
+
+          <div class="option-list">
+            <div class="location-picker" id="location-picker">
+              <button class="option" id="location-toggle" type="button" aria-expanded="false" aria-controls="location-menu">
+                <span class="option-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                    <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="2.5"/>
+                  </svg>
+                </span>
+                <span class="option-copy">
+                  <strong id="selected-location">Choose your location</strong>
+                  <small id="location-help">Find available companions nearby</small>
+                </span>
+                <span class="option-arrow" aria-hidden="true">›</span>
+              </button>
+              <div class="location-menu" id="location-menu" role="listbox" aria-label="Choose your location">
+                <button class="location-choice" type="button" role="option" aria-selected="false" data-location="Banani">Banani</button>
+                <button class="location-choice" type="button" role="option" aria-selected="false" data-location="Gulshan 1">Gulshan 1</button>
+                <button class="location-choice" type="button" role="option" aria-selected="false" data-location="Gulshan 2">Gulshan 2</button>
+                <button class="location-choice" type="button" role="option" aria-selected="false" data-location="Nikunjo">Nikunjo</button>
+                <button class="location-choice" type="button" role="option" aria-selected="false" data-location="Uttara">Uttara</button>
+              </div>
+            </div>
+
+            <a class="option" href="#companions">
+              <span class="option-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4.5 21a7.5 7.5 0 0 1 15 0"/>
+                </svg>
+              </span>
+              <span class="option-copy">
+                <strong>Browse verified profiles</strong>
+                <small>Preferences, availability and details</small>
+              </span>
+              <span class="option-arrow" aria-hidden="true">›</span>
+            </a>
+
+            <a class="option" href="#contact">
+              <span class="option-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+                  <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/>
+                  <path d="M8 10h8M8 14h5"/>
+                </svg>
+              </span>
+              <span class="option-copy">
+                <strong>Connect discreetly</strong>
+                <small>Secure and private communication</small>
+              </span>
+              <span class="option-arrow" aria-hidden="true">›</span>
+            </a>
+          </div>
+
+          <p class="card-note">
+            Sweet Dream is intended only for consenting adults. Respect, privacy and local law are required at all times.
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="profiles-section" id="companions">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Browse profiles</div>
+            <h2>Meet our featured companion.</h2>
+          </div>
+          <p>
+            View profile details, availability and preferred locations before making
+            a private enquiry. All meetings are for consenting adults only.
+          </p>
+        </div>
+
+        <div class="profile-grid">
+          <article class="profile-card featured">
+            <div class="profile-visual">
+              <span class="verified-badge">Verified profile</span>
+              <div class="profile-initials" aria-label="Akib Mahfuz initials">AM</div>
+            </div>
+
+            <div class="profile-body">
+              <div class="profile-title">
+                <h3>Akib Mahfuz</h3>
+                <span class="profile-age">Age 28</span>
+              </div>
+              <p class="profile-role">Independent companion</p>
+              <p class="profile-description">
+                Friendly, respectful and easygoing. Available for private social
+                companionship, dinner dates and special occasions by advance arrangement.
+              </p>
+
+              <div class="profile-details">
+                <div class="profile-detail">
+                  <small>Location</small>
+                  <strong>Dhaka</strong>
+                </div>
+                <div class="profile-detail">
+                  <small>Languages</small>
+                  <strong>Bangla &amp; English</strong>
+                </div>
+                <div class="profile-detail">
+                  <small>Availability</small>
+                  <strong>Evening &amp; weekend</strong>
+                </div>
+                <div class="profile-detail">
+                  <small>Response time</small>
+                  <strong>Usually within 1 hour</strong>
+                </div>
+              </div>
+
+              <div class="profile-actions">
+                <a class="primary-button" href="#booking">View availability <span aria-hidden="true">→</span></a>
+                <a class="secondary-button" href="#contact">Private enquiry</a>
+              </div>
+
+              <button class="secondary-button profile-booking-toggle" id="profile-booking-toggle" type="button" aria-expanded="false" aria-controls="profile-booking-panel">
+                Customize booking <span aria-hidden="true">›</span>
+              </button>
+
+              <div class="profile-booking-panel" id="profile-booking-panel">
+                <form class="preference-form" id="preference-form">
+                  <div class="form-heading">
+                    <h3>Booking preferences</h3>
+                    <p>Choose your preferred options. Final details are confirmed privately and respectfully.</p>
+                  </div>
+
+                  <div class="form-grid">
+                    <div class="form-field">
+                      <label for="service-type">Service type</label>
+                      <select id="service-type" name="serviceType" required>
+                        <option value="">Select an option</option>
+                        <option>Dinner companion</option>
+                        <option>Event companion</option>
+                        <option>Private social time</option>
+                        <option>City outing</option>
+                        <option>Special occasion</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="booking-duration">Duration</label>
+                      <select id="booking-duration" name="duration" required>
+                        <option value="">Select duration</option>
+                        <option>1 hour</option>
+                        <option>2 hours</option>
+                        <option>3 hours</option>
+                        <option>Evening</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="meeting-style">Meeting style</label>
+                      <select id="meeting-style" name="meetingStyle" required>
+                        <option value="">Select a style</option>
+                        <option>Relaxed and conversational</option>
+                        <option>Romantic dinner atmosphere</option>
+                        <option>Formal event</option>
+                        <option>Casual outing</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="booking-location">Location</label>
+                      <select id="booking-location" name="location" required>
+                        <option value="">Choose location</option>
+                        <option>Banani</option>
+                        <option>Gulshan 1</option>
+                        <option>Gulshan 2</option>
+                        <option>Nikunjo</option>
+                        <option>Uttara</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="special-extra">Special extra</label>
+                      <select id="special-extra" name="specialExtra">
+                        <option value="">No extra selected</option>
+                        <option>Dinner reservation planning</option>
+                        <option>Event preparation</option>
+                        <option>Gift arrangement</option>
+                        <option>Extended conversation time</option>
+                        <option>Custom request to discuss</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field">
+                      <label for="preferred-time">Preferred time</label>
+                      <select id="preferred-time" name="preferredTime" required>
+                        <option value="">Select a time</option>
+                        <option>Afternoon</option>
+                        <option>Early evening</option>
+                        <option>Evening</option>
+                        <option>Late evening</option>
+                        <option>Weekend</option>
+                      </select>
+                    </div>
+
+                    <div class="form-field full">
+                      <label for="booking-notes">Additional notes</label>
+                      <textarea id="booking-notes" name="notes" placeholder="Share non-explicit preferences, occasion details or accessibility needs."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-footer">
+                    <div>
+                      <p class="form-disclaimer">Submitting this form does not confirm a booking. Adults only.</p>
+                      <p class="form-message" id="form-message" role="status">Preferences submitted. We will confirm availability privately.</p>
+                    </div>
+                    <button class="primary-button submit-button" type="submit">Submit preferences <span aria-hidden="true">→</span></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </article>
+
+          <div class="coming-card">
+            <div>
+              <span>More profiles</span>
+              New verified profiles will be available soon.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Service details</div>
+            <h2>Professional, private and respectful.</h2>
+          </div>
+          <p>
+            Arrange an adult social-companionship experience with clear timing,
+            expectations and boundaries agreed in advance.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <span class="service-icon">01</span>
+            <h3>Expertise</h3>
+            <p>Professional-level hosting with a friendly, calm and respectful approach.</p>
+            <strong>Level: Pro</strong>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">02</span>
+            <h3>Social companionship</h3>
+            <p>Dinner dates, conversation, events and private social time for verified adults.</p>
+            <strong>By prior arrangement</strong>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">03</span>
+            <h3>Appointment timing</h3>
+            <p>Select a suitable duration when making an enquiry. Longer bookings require notice.</p>
+            <strong>1 hour · 2 hours · Evening</strong>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">04</span>
+            <h3>Availability</h3>
+            <p>Advance booking is recommended, particularly for evenings and weekends.</p>
+            <strong>Daily, subject to confirmation</strong>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">05</span>
+            <h3>Preferred locations</h3>
+            <p>Available in selected Dhaka areas shown in the location picker above.</p>
+            <strong>Banani · Gulshan · Nikunjo · Uttara</strong>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">06</span>
+            <h3>Privacy</h3>
+            <p>Personal information and communications are handled discreetly and respectfully.</p>
+            <strong>Private communication</strong>
+          </article>
+        </div>
+
+        <div class="service-notice">
+          <p>
+            <b>Consent and boundaries:</b> All details must be discussed respectfully in advance.
+            Either person may decline or end an appointment at any time. Adults only, with local
+            laws observed.
+          </p>
+          <a class="primary-button" href="#booking">Check availability <span aria-hidden="true">→</span></a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const menuButton = document.getElementById("menu-button");
+    const mainNav = document.getElementById("main-nav");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = mainNav.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+    });
+
+    mainNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mainNav.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const locationPicker = document.getElementById("location-picker");
+    const locationToggle = document.getElementById("location-toggle");
+    const selectedLocation = document.getElementById("selected-location");
+    const locationHelp = document.getElementById("location-help");
+    const locationChoices = document.querySelectorAll(".location-choice");
+
+    locationToggle.addEventListener("click", () => {
+      const isOpen = locationPicker.classList.toggle("open");
+      locationToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    locationChoices.forEach((choice) => {
+      choice.addEventListener("click", () => {
+        locationChoices.forEach((item) => {
+          item.classList.remove("selected");
+          item.setAttribute("aria-selected", "false");
+        });
+
+        choice.classList.add("selected");
+        choice.setAttribute("aria-selected", "true");
+        selectedLocation.textContent = choice.dataset.location;
+        locationHelp.textContent = "Selected location";
+        locationPicker.classList.remove("open");
+        locationToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!locationPicker.contains(event.target)) {
+        locationPicker.classList.remove("open");
+        locationToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    const preferenceForm = document.getElementById("preference-form");
+    const formMessage = document.getElementById("form-message");
+    const profileBookingToggle = document.getElementById("profile-booking-toggle");
+    const profileBookingPanel = document.getElementById("profile-booking-panel");
+
+    profileBookingToggle.addEventListener("click", () => {
+      const isOpen = profileBookingPanel.classList.toggle("open");
+      profileBookingToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    preferenceForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      formMessage.classList.add("visible");
+    });
+  </script>
+</body>
+</html>
