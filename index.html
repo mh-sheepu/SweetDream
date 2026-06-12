@@ -53,6 +53,113 @@
       font: inherit;
     }
 
+    body.age-locked {
+      overflow: hidden;
+    }
+
+    .age-gate {
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(230, 77, 131, 0.2), transparent 32rem),
+        rgba(7, 3, 8, 0.96);
+      backdrop-filter: blur(18px);
+      transition: opacity 240ms ease, visibility 240ms ease;
+    }
+
+    .age-gate.hidden {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .age-gate-card {
+      position: relative;
+      width: min(100%, 520px);
+      overflow: hidden;
+      padding: 44px;
+      border: 1px solid rgba(230, 189, 121, 0.24);
+      border-radius: 32px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.06), transparent 45%),
+        #150c16;
+      box-shadow: 0 35px 100px rgba(0, 0, 0, 0.58);
+      text-align: center;
+    }
+
+    .age-gate-card::before {
+      position: absolute;
+      top: -1px;
+      right: 60px;
+      left: 60px;
+      height: 1px;
+      content: "";
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .age-seal {
+      display: grid;
+      width: 112px;
+      height: 112px;
+      margin: 0 auto 26px;
+      place-items: center;
+      border: 1px solid rgba(230, 189, 121, 0.48);
+      border-radius: 50%;
+      color: var(--gold);
+      background:
+        radial-gradient(circle, rgba(230, 77, 131, 0.15), transparent 65%),
+        rgba(8, 4, 9, 0.55);
+      box-shadow:
+        0 0 0 12px rgba(230, 189, 121, 0.035),
+        0 0 55px rgba(230, 77, 131, 0.18);
+      font-family: "Playfair Display", serif;
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    .age-gate-card .eyebrow {
+      margin-bottom: 17px;
+    }
+
+    .age-gate-card h2 {
+      margin-bottom: 16px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(34px, 8vw, 48px);
+      line-height: 1.08;
+    }
+
+    .age-gate-card > p {
+      max-width: 410px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .age-gate-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .age-gate-actions button,
+    .age-gate-actions a {
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .age-gate-note {
+      margin-top: 20px !important;
+      color: #7f6f7c !important;
+      font-size: 10px !important;
+      letter-spacing: 0.04em;
+    }
+
     .container {
       width: min(calc(100% - 40px), var(--container));
       margin-inline: auto;
@@ -998,6 +1105,274 @@
       white-space: nowrap;
     }
 
+    .content-section {
+      padding: 100px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .content-section.alt {
+      background:
+        radial-gradient(circle at 15% 30%, rgba(230, 77, 131, 0.08), transparent 25rem),
+        #0a060b;
+    }
+
+    .steps-grid,
+    .location-grid,
+    .safety-grid,
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .info-card {
+      position: relative;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 23px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+    }
+
+    .step-number {
+      display: inline-grid;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 23px;
+      place-items: center;
+      border: 1px solid rgba(230, 189, 121, 0.3);
+      border-radius: 50%;
+      color: var(--gold);
+      background: rgba(230, 189, 121, 0.06);
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+    }
+
+    .info-card h3 {
+      margin-bottom: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 23px;
+    }
+
+    .info-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .location-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .location-card {
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 21px;
+      background:
+        linear-gradient(180deg, transparent, rgba(8, 4, 9, 0.94)),
+        radial-gradient(circle at 70% 25%, rgba(230, 77, 131, 0.2), transparent 55%),
+        #201020;
+      transition: border-color 180ms ease, transform 180ms ease;
+    }
+
+    .location-card:hover {
+      border-color: rgba(230, 189, 121, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .location-card small {
+      margin-bottom: 5px;
+      color: var(--rose-light);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .location-card strong {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+    }
+
+    .safety-card {
+      text-align: center;
+    }
+
+    .safety-icon {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 20px;
+      place-items: center;
+      border: 1px solid rgba(119, 210, 154, 0.25);
+      border-radius: 17px;
+      color: #a9e8c0;
+      background: rgba(119, 210, 154, 0.07);
+      font-size: 20px;
+    }
+
+    .quote-card {
+      display: flex;
+      min-height: 230px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .quote-mark {
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      line-height: 0.7;
+    }
+
+    .quote-card blockquote {
+      margin: 20px 0 24px;
+      color: #e1d5de;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .quote-card footer {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .faq-list {
+      display: grid;
+      max-width: 860px;
+      gap: 12px;
+    }
+
+    .faq-list details {
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: rgba(255, 255, 255, 0.022);
+    }
+
+    .faq-list summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 22px;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+    }
+
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-list summary::after {
+      color: var(--rose-light);
+      content: "+";
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .faq-list details[open] summary::after {
+      content: "−";
+    }
+
+    .faq-list details p {
+      padding: 0 22px 22px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .contact-panel {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      padding: 48px;
+      overflow: hidden;
+      border: 1px solid rgba(230, 189, 121, 0.22);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(230, 77, 131, 0.2), transparent 22rem),
+        linear-gradient(145deg, #241224, #110a12);
+    }
+
+    .contact-panel h2 {
+      max-width: 620px;
+      margin-bottom: 14px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1.08;
+    }
+
+    .contact-panel p {
+      max-width: 600px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-shrink: 0;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .site-footer {
+      padding: 55px 0 28px;
+      border-top: 1px solid var(--line);
+      background: #080408;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(2, 0.7fr);
+      gap: 45px;
+      padding-bottom: 38px;
+    }
+
+    .footer-copy {
+      max-width: 390px;
+      margin-top: 17px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-column h3 {
+      margin-bottom: 16px;
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .footer-column a {
+      display: block;
+      width: fit-content;
+      margin-bottom: 11px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-column a:hover {
+      color: var(--text);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 25px;
+      border-top: 1px solid var(--line);
+      color: #776974;
+      font-size: 10px;
+    }
+
     @media (max-width: 960px) {
       .main-nav,
       .login-link {
@@ -1064,9 +1439,33 @@
       .services-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
+
+      .location-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .contact-panel {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
 
     @media (max-width: 600px) {
+      .age-gate-card {
+        padding: 34px 20px;
+        border-radius: 25px;
+      }
+
+      .age-seal {
+        width: 92px;
+        height: 92px;
+        font-size: 30px;
+      }
+
+      .age-gate-actions {
+        grid-template-columns: 1fr;
+      }
+
       .container {
         width: min(calc(100% - 28px), var(--container));
       }
@@ -1143,6 +1542,39 @@
         grid-template-columns: 1fr;
       }
 
+      .content-section {
+        padding: 75px 0;
+      }
+
+      .steps-grid,
+      .location-grid,
+      .safety-grid,
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .location-card {
+        min-height: 135px;
+      }
+
+      .contact-panel {
+        padding: 32px 22px;
+      }
+
+      .contact-actions,
+      .contact-actions a {
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+      }
+
       .service-notice {
         align-items: stretch;
         flex-direction: column;
@@ -1179,7 +1611,28 @@
     }
   </style>
 </head>
-<body>
+<body class="age-locked">
+  <div class="age-gate" id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+    <div class="age-gate-card">
+      <div class="age-seal" aria-hidden="true">18+</div>
+      <div class="eyebrow">Age verification</div>
+      <h2 id="age-gate-title">Adults only.</h2>
+      <p>
+        This website contains adult-oriented companionship content. You must be
+        at least 18 years old, or the legal adult age in your location, to continue.
+      </p>
+      <div class="age-gate-actions">
+        <button class="primary-button" id="age-confirm" type="button">
+          I am 18 or older <span aria-hidden="true">→</span>
+        </button>
+        <a class="secondary-button" href="about:blank">Leave website</a>
+      </div>
+      <p class="age-gate-note">
+        By entering, you confirm that you meet the legal age requirement and agree to view this content responsibly.
+      </p>
+    </div>
+  </div>
+
   <div class="age-bar">
     <strong>18+ ADULTS ONLY</strong>
     By entering, you confirm that you are of legal age in your location.
@@ -1562,9 +2015,245 @@
 
       </div>
     </section>
+
+    <section class="content-section alt" id="how-it-works">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Simple process</div>
+            <h2>How it works.</h2>
+          </div>
+          <p>Plan a respectful adult companionship experience in three clear steps.</p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="info-card">
+            <span class="step-number">01</span>
+            <h3>Choose a location</h3>
+            <p>Select your preferred Dhaka area and review currently available profiles.</p>
+          </article>
+          <article class="info-card">
+            <span class="step-number">02</span>
+            <h3>Share preferences</h3>
+            <p>Choose timing and social preferences, then send a private availability request.</p>
+          </article>
+          <article class="info-card">
+            <span class="step-number">03</span>
+            <h3>Confirm privately</h3>
+            <p>Details, expectations and boundaries are confirmed directly before any meeting.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="locations">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Dhaka areas</div>
+            <h2>Available locations.</h2>
+          </div>
+          <p>Availability varies by date and time. Advance enquiries are recommended.</p>
+        </div>
+
+        <div class="location-grid">
+          <a class="location-card" href="#booking">
+            <small>Dhaka North</small>
+            <strong>Banani</strong>
+          </a>
+          <a class="location-card" href="#booking">
+            <small>Dhaka North</small>
+            <strong>Gulshan 1</strong>
+          </a>
+          <a class="location-card" href="#booking">
+            <small>Dhaka North</small>
+            <strong>Gulshan 2</strong>
+          </a>
+          <a class="location-card" href="#booking">
+            <small>Dhaka North</small>
+            <strong>Nikunjo</strong>
+          </a>
+          <a class="location-card" href="#booking">
+            <small>Dhaka North</small>
+            <strong>Uttara</strong>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section alt" id="safety">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Trust and safety</div>
+            <h2>Respect comes first.</h2>
+          </div>
+          <p>Clear expectations help create a safer, more comfortable experience for everyone.</p>
+        </div>
+
+        <div class="safety-grid">
+          <article class="info-card safety-card">
+            <span class="safety-icon" aria-hidden="true">✓</span>
+            <h3>Adult verification</h3>
+            <p>This platform and its enquiries are intended only for adults aged 18 or older.</p>
+          </article>
+          <article class="info-card safety-card">
+            <span class="safety-icon" aria-hidden="true">◆</span>
+            <h3>Consent first</h3>
+            <p>Boundaries must be discussed and respected. Consent may be withdrawn at any time.</p>
+          </article>
+          <article class="info-card safety-card">
+            <span class="safety-icon" aria-hidden="true">●</span>
+            <h3>Private communication</h3>
+            <p>Personal information should be shared carefully and only when needed for confirmation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Guest feedback</div>
+            <h2>Kind words.</h2>
+          </div>
+          <p>Sample feedback showing how future verified reviews can appear on the website.</p>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="info-card quote-card">
+            <div>
+              <span class="quote-mark">“</span>
+              <blockquote>Communication was clear, polite and discreet from the beginning.</blockquote>
+            </div>
+            <footer>Verified guest · Banani</footer>
+          </article>
+          <article class="info-card quote-card">
+            <div>
+              <span class="quote-mark">“</span>
+              <blockquote>The booking process felt simple and expectations were explained clearly.</blockquote>
+            </div>
+            <footer>Verified guest · Gulshan</footer>
+          </article>
+          <article class="info-card quote-card">
+            <div>
+              <span class="quote-mark">“</span>
+              <blockquote>A respectful, relaxed experience with excellent communication.</blockquote>
+            </div>
+            <footer>Verified guest · Uttara</footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section alt">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Questions</div>
+            <h2>Frequently asked.</h2>
+          </div>
+        </div>
+
+        <div class="faq-list">
+          <details>
+            <summary>Who can use Sweet Dream?</summary>
+            <p>Only adults who meet the legal age requirement in their location may use the website.</p>
+          </details>
+          <details>
+            <summary>Does submitting the form confirm a booking?</summary>
+            <p>No. The form sends your preferences only. Availability and final details must be confirmed privately.</p>
+          </details>
+          <details>
+            <summary>Which locations are available?</summary>
+            <p>Current areas include Banani, Gulshan 1, Gulshan 2, Nikunjo and Uttara.</p>
+          </details>
+          <details>
+            <summary>Can a request be declined?</summary>
+            <p>Yes. Either person may decline a request or end an arrangement at any time.</p>
+          </details>
+          <details>
+            <summary>How is privacy handled?</summary>
+            <p>Communications should remain discreet, and unnecessary personal information should never be requested.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section" id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div>
+            <div class="eyebrow">Private enquiry</div>
+            <h2>Ready to plan your time?</h2>
+            <p>Choose a location, review Akib's profile and submit your preferences for private confirmation.</p>
+          </div>
+          <div class="contact-actions">
+            <a class="primary-button" href="#companions">View profile <span aria-hidden="true">→</span></a>
+            <a class="secondary-button" href="#booking">Choose location</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="logo" href="#" aria-label="Sweet Dream home">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M19.5 14.5A8 8 0 0 1 9.5 4.3a8 8 0 1 0 10 10.2Z"/>
+                <path d="m15.7 3.2.5 1.3 1.3.5-1.3.5-.5 1.3-.5-1.3-1.3-.5 1.3-.5.5-1.3Z"/>
+              </svg>
+            </span>
+            <span class="logo-copy">
+              <strong>Sweet Dream</strong>
+              <small>Private companionship</small>
+            </span>
+          </a>
+          <p class="footer-copy">A discreet adult social-companionship directory focused on privacy, respect and clear communication.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Explore</h3>
+          <a href="#companions">Profiles</a>
+          <a href="#services">Services</a>
+          <a href="#locations">Locations</a>
+          <a href="#how-it-works">How it works</a>
+        </div>
+        <div class="footer-column">
+          <h3>Information</h3>
+          <a href="#safety">Safety</a>
+          <a href="#contact">Contact</a>
+          <a href="#">Privacy policy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Sweet Dream. Adults only.</span>
+        <span>Respect privacy, consent and local law.</span>
+      </div>
+    </div>
+  </footer>
+
   <script>
+    const ageGate = document.getElementById("age-gate");
+    const ageConfirm = document.getElementById("age-confirm");
+    const ageVerified = window.localStorage.getItem("sweetDreamAgeVerified") === "true";
+
+    if (ageVerified) {
+      ageGate.classList.add("hidden");
+      document.body.classList.remove("age-locked");
+    }
+
+    ageConfirm.addEventListener("click", () => {
+      window.localStorage.setItem("sweetDreamAgeVerified", "true");
+      ageGate.classList.add("hidden");
+      document.body.classList.remove("age-locked");
+    });
+
     const menuButton = document.getElementById("menu-button");
     const mainNav = document.getElementById("main-nav");
 
