@@ -1373,6 +1373,280 @@
       font-size: 10px;
     }
 
+    .chat-launcher {
+      position: fixed;
+      z-index: 90;
+      right: 24px;
+      bottom: 24px;
+      display: flex;
+      width: 58px;
+      height: 58px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(135deg, #c73570, #e65586);
+      box-shadow: 0 15px 38px rgba(197, 53, 112, 0.4);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .chat-launcher:hover {
+      box-shadow: 0 18px 45px rgba(230, 77, 131, 0.5);
+      transform: translateY(-3px);
+    }
+
+    .chat-launcher svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .chat-launcher-badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 14px;
+      height: 14px;
+      border: 3px solid var(--bg);
+      border-radius: 50%;
+      background: #77d29a;
+      animation: online-blink 1.6s ease-in-out infinite;
+    }
+
+    .live-chat {
+      position: fixed;
+      z-index: 100;
+      right: 24px;
+      bottom: 94px;
+      display: flex;
+      width: min(380px, calc(100vw - 28px));
+      height: min(590px, calc(100vh - 130px));
+      overflow: hidden;
+      flex-direction: column;
+      border: 1px solid rgba(230, 189, 121, 0.22);
+      border-radius: 25px;
+      visibility: hidden;
+      opacity: 0;
+      background: #120b13;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.58);
+      transform: translateY(14px) scale(0.98);
+      transform-origin: bottom right;
+      transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease;
+    }
+
+    .live-chat.open {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 17px 18px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 85% 10%, rgba(230, 77, 131, 0.18), transparent 12rem),
+        #1a0e19;
+    }
+
+    .chat-avatar {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      place-items: center;
+      border: 1px solid rgba(230, 189, 121, 0.4);
+      border-radius: 50%;
+      color: var(--gold);
+      background: #100910;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+    }
+
+    .chat-person {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .chat-person strong {
+      display: block;
+      margin-bottom: 3px;
+      font-family: "Playfair Display", serif;
+      font-size: 17px;
+    }
+
+    .online-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #a9e8c0;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .online-status::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      content: "";
+      background: #77d29a;
+      box-shadow: 0 0 11px #77d29a;
+      animation: online-blink 1.6s ease-in-out infinite;
+    }
+
+    @keyframes online-blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .chat-close {
+      display: grid;
+      width: 35px;
+      height: 35px;
+      place-items: center;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.025);
+      font-size: 20px;
+    }
+
+    .chat-messages {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 12px;
+      padding: 18px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .chat-message {
+      max-width: 84%;
+      padding: 11px 13px;
+      border-radius: 15px;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .chat-message.agent {
+      align-self: flex-start;
+      border: 1px solid var(--line);
+      border-bottom-left-radius: 5px;
+      color: #dfd3dc;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .chat-message.user {
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+      color: white;
+      background: linear-gradient(135deg, #b72f66, #df4f80);
+    }
+
+    .chat-message.typing {
+      display: inline-flex;
+      width: fit-content;
+      gap: 4px;
+      padding: 13px 15px;
+    }
+
+    .chat-message.typing span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--muted);
+      animation: typing-dot 1s ease-in-out infinite;
+    }
+
+    .chat-message.typing span:nth-child(2) {
+      animation-delay: 140ms;
+    }
+
+    .chat-message.typing span:nth-child(3) {
+      animation-delay: 280ms;
+    }
+
+    @keyframes typing-dot {
+      0%, 100% {
+        opacity: 0.35;
+        transform: translateY(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-3px);
+      }
+    }
+
+    .chat-quick-actions {
+      display: flex;
+      gap: 7px;
+      padding: 0 15px 12px;
+      overflow-x: auto;
+    }
+
+    .chat-quick-action {
+      flex-shrink: 0;
+      padding: 8px 11px;
+      cursor: pointer;
+      border: 1px solid rgba(230, 77, 131, 0.25);
+      border-radius: 999px;
+      color: #e5d7e1;
+      background: rgba(230, 77, 131, 0.07);
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .chat-form {
+      display: flex;
+      gap: 8px;
+      padding: 13px;
+      border-top: 1px solid var(--line);
+      background: #0e080f;
+    }
+
+    .chat-input {
+      min-width: 0;
+      min-height: 43px;
+      flex: 1;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      outline: none;
+      color: var(--text);
+      background: #1a111a;
+      font: inherit;
+      font-size: 12px;
+    }
+
+    .chat-input:focus {
+      border-color: rgba(230, 77, 131, 0.55);
+    }
+
+    .chat-send {
+      display: grid;
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+      place-items: center;
+      cursor: pointer;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(135deg, #c73570, #e65586);
+      font-size: 18px;
+    }
+
     @media (max-width: 960px) {
       .main-nav,
       .login-link {
@@ -1451,6 +1725,17 @@
     }
 
     @media (max-width: 600px) {
+      .chat-launcher {
+        right: 14px;
+        bottom: 14px;
+      }
+
+      .live-chat {
+        right: 14px;
+        bottom: 82px;
+        height: min(560px, calc(100vh - 105px));
+      }
+
       .age-gate-card {
         padding: 34px 20px;
         border-radius: 25px;
@@ -2238,6 +2523,46 @@
     </div>
   </footer>
 
+  <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Open live chat" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z"/>
+      <path d="M8 10h8M8 14h5"/>
+    </svg>
+    <span class="chat-launcher-badge" aria-hidden="true"></span>
+  </button>
+
+  <aside class="live-chat" id="live-chat" aria-label="Live chat with Akib Mahfuz">
+    <div class="chat-header">
+      <div class="chat-avatar" aria-hidden="true">AM</div>
+      <div class="chat-person">
+        <strong>Akib Mahfuz</strong>
+        <span class="online-status">Online now</span>
+      </div>
+      <button class="chat-close" id="chat-close" type="button" aria-label="Close live chat">×</button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages" aria-live="polite">
+      <div class="chat-message agent">
+        Hey, I am Akib Mahfuz. Welcome to Sweet Dream.
+      </div>
+      <div class="chat-message agent">
+        What type of companionship service do you need? You can choose an option below or send a message.
+      </div>
+    </div>
+
+    <div class="chat-quick-actions" aria-label="Quick chat options">
+      <button class="chat-quick-action" type="button" data-chat-message="I want to check availability.">Availability</button>
+      <button class="chat-quick-action" type="button" data-chat-message="I need help choosing a service.">Services</button>
+      <button class="chat-quick-action" type="button" data-chat-message="Which locations are available?">Locations</button>
+      <button class="chat-quick-action" type="button" data-chat-message="How do I make a booking?">How to book</button>
+    </div>
+
+    <form class="chat-form" id="chat-form">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Write a message..." autocomplete="off" aria-label="Chat message">
+      <button class="chat-send" type="submit" aria-label="Send message">→</button>
+    </form>
+  </aside>
+
   <script>
     const ageGate = document.getElementById("age-gate");
     const ageConfirm = document.getElementById("age-confirm");
@@ -2317,6 +2642,98 @@
     preferenceForm.addEventListener("submit", (event) => {
       event.preventDefault();
       formMessage.classList.add("visible");
+    });
+
+    const chatLauncher = document.getElementById("chat-launcher");
+    const liveChat = document.getElementById("live-chat");
+    const chatClose = document.getElementById("chat-close");
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+    const chatMessages = document.getElementById("chat-messages");
+    const chatQuickActions = document.querySelectorAll(".chat-quick-action");
+
+    function setChatOpen(isOpen) {
+      liveChat.classList.toggle("open", isOpen);
+      chatLauncher.setAttribute("aria-expanded", String(isOpen));
+
+      if (isOpen) {
+        window.setTimeout(() => chatInput.focus(), 180);
+      }
+    }
+
+    function addChatMessage(text, sender) {
+      const message = document.createElement("div");
+      message.className = `chat-message ${sender}`;
+      message.textContent = text;
+      chatMessages.appendChild(message);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function getChatResponse(message) {
+      const text = message.toLowerCase();
+
+      if (text.includes("available") || text.includes("availability") || text.includes("time")) {
+        return "I am generally available during evenings and weekends. Please use Customize booking on my profile to choose your preferred time.";
+      }
+
+      if (text.includes("location") || text.includes("banani") || text.includes("gulshan") || text.includes("uttara") || text.includes("nikunjo")) {
+        return "Current locations are Banani, Gulshan 1, Gulshan 2, Nikunjo and Uttara. Which area works best for you?";
+      }
+
+      if (text.includes("service") || text.includes("dinner") || text.includes("event")) {
+        return "Available options include dinner companionship, event companionship, city outings, private social time and special occasions.";
+      }
+
+      if (text.includes("book") || text.includes("appointment")) {
+        return "Choose a location, open Customize booking on my profile, select your preferences and submit the form. Availability will then be confirmed privately.";
+      }
+
+      if (text.includes("price") || text.includes("cost") || text.includes("rate")) {
+        return "Pricing depends on duration, location and the selected social experience. Please submit your preferences for a private quote.";
+      }
+
+      if (text.includes("hello") || text.includes("hi") || text.includes("hey")) {
+        return "Hello. It is nice to meet you. Are you looking for availability, services, locations or booking help?";
+      }
+
+      return "Thanks for your message. Please share your preferred location, timing and type of social companionship, and I will help with the next step.";
+    }
+
+    function sendChatMessage(text) {
+      const cleanText = text.trim();
+      if (!cleanText) return;
+
+      addChatMessage(cleanText, "user");
+      chatInput.value = "";
+
+      const typing = document.createElement("div");
+      typing.className = "chat-message agent typing";
+      typing.setAttribute("aria-label", "Akib is typing");
+      typing.innerHTML = "<span></span><span></span><span></span>";
+      chatMessages.appendChild(typing);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      window.setTimeout(() => {
+        typing.remove();
+        addChatMessage(getChatResponse(cleanText), "agent");
+      }, 700);
+    }
+
+    chatLauncher.addEventListener("click", () => {
+      setChatOpen(!liveChat.classList.contains("open"));
+    });
+
+    chatClose.addEventListener("click", () => setChatOpen(false));
+
+    chatForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      sendChatMessage(chatInput.value);
+    });
+
+    chatQuickActions.forEach((button) => {
+      button.addEventListener("click", () => {
+        sendChatMessage(button.dataset.chatMessage || button.textContent);
+      });
     });
   </script>
 </body>
